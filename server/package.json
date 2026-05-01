@@ -12,7 +12,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "cors": "^2.8.6",
+    "better-sqlite3": "^12.9.0",
     "express": "^5.2.1"
   }
 }
