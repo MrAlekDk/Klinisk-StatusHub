@@ -1,1 +1,11 @@
 @import 'tailwindcss';
+
+
+/* Color scheme */
+:root {
+  --shadow-grey: #181D27;
+  --white-light: #FAF3DD;
+  --green-light: #C8D5B9;
+  --green-mint: #8FC0A9;
+  --blue-light: #68B0AB;
+}
