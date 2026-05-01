@@ -3,12 +3,12 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-//serves static files from client/public
-const publicPath = path.join(__dirname, '../client/public');
+//serves static files from client/dist/client/browser
+const publicPath = path.join(__dirname, '../client/dist/client/browser');
 app.use(express.static(publicPath));
 
 // fallback route
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
