@@ -3,6 +3,9 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const apiRouter = require('./routes/api');
+app.use('/api', apiRouter);
+
 //serves static files from client/dist/client/browser
 const publicPath = path.join(__dirname, '../client/dist/client/browser');
 app.use(express.static(publicPath));
