@@ -139,6 +139,7 @@ dist
 .sqlite
 *.sqlite
 server/db/database.sqlite
+server/db/*.sqlite
 
 # server tests
 server/test/
