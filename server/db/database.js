@@ -4,6 +4,7 @@ const fs = require('fs');
 
 const dbPath = path.join(__dirname, 'database.sqlite');
 const schemaPath = path.join(__dirname, 'schema.sql');
+const dataPath = path.join(__dirname, 'test-data.sql')
 
 const db = new Database(dbPath, {
     //verbose: console.log,
@@ -19,7 +20,9 @@ db.pragma(`kdf_iter = 256000`)
 db.exec(`PRAGMA foreign_keys = ON;`);
 
 const schema = fs.readFileSync(schemaPath, 'utf-8');
+const data = fs.readFileSync(dataPath, 'utf-8')
 
 db.exec(schema);
+db.exec()
 
 module.exports = db;
