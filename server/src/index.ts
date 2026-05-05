@@ -2,7 +2,8 @@ import express from 'express';
 
 import 'dotenv/config';
 import path from 'node:path';
-import router from './routes/api.js';
+import apiRouter from './routes/api.js';
+import authRouter from './routes/authRoutes.js';
 import { fileURLToPath } from 'node:url';
 
 const app = express();
@@ -11,7 +12,9 @@ const port: string | number = process.env['PORT'] || 3000;
 const __filename: string = fileURLToPath(import.meta.url);
 const __dirname: string = path.dirname(__filename);
 
-app.use('/api', router);
+app.use(express.json());
+app.use('/api', apiRouter);
+app.use(authRouter);
 
 //serves static files from client/dist/client/browser
 const publicPath: string = path.join(__dirname, '../../client/dist/client/browser');
