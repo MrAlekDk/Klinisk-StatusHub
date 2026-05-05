@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 //test route to check if API is working
-if (process.env.NODE_ENV === "development") {
+if (process.env["NODE_ENV"] === "development") {
     router.get("/api-test", (req: Request, res: Response) => {
       res.json({ message: "API is working" });
     });
