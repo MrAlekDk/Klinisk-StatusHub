@@ -24,7 +24,15 @@ db.pragma(`kdf_iter = 256000`);
 
 db.exec(`PRAGMA foreign_keys = ON;`);
 
-const schema = fs.readFileSync(schemaPath, 'utf-8');
+const schema: string = fs.readFileSync(schemaPath, 'utf-8');
 db.exec(schema);
+
+if (process.env["NODE_ENV"] === "development")
+{
+  const testDataPath: string = path.join(__dirname, 'test-data.sql');
+
+  const data: string = fs.readFileSync(testDataPath, 'utf-8');
+  db.exec(data);
+}
 
 export default db;
