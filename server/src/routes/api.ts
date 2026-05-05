@@ -4,9 +4,6 @@ import db from "../db/database.js";
 
 const router = express.Router();
 
-//Routes for API endpoints here
-
-
 //test route to check if API is working
 if (process.env["NODE_ENV"] === "development") {
     router.get("/api-test", (req: Request, res: Response) => {
