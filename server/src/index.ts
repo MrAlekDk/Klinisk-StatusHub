@@ -5,6 +5,12 @@ import path from 'node:path';
 import apiRouter from './routes/api.js';
 import authRouter from './routes/authRoutes.js';
 import { fileURLToPath } from 'node:url';
+import cron from 'node-cron';
+import runHealthCheck from './services/healthCheckService.js';
+
+// schedule cron task to run healthCheck
+cron.schedule('* * * * *', runHealthCheck);
+
 
 const app = express();
 const port: string | number = process.env['PORT'] || 3000;

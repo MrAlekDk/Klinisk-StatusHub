@@ -20,13 +20,13 @@ WHERE NOT EXISTS (
 
 -- Create test systems
 INSERT INTO systems (organisation_id, name, link)
-SELECT 1, 'Dental Journal System', 'https://journal.example.com/healthcheck'
+SELECT 1, 'Dental Journal System', 'https://httpbin.org/status/200'
 WHERE NOT EXISTS (
     SELECT 1 FROM systems WHERE name = 'Dental Journal System'
 );
 
 INSERT INTO systems (organisation_id, name, link)
-SELECT 1, 'Appointment Booking', 'https://booking.example.com/status'
+SELECT 1, 'Appointment Booking', 'https://httpbin.org/status/500'
 WHERE NOT EXISTS (
     SELECT 1 FROM systems WHERE name = 'Appointment Booking'
 );
