@@ -1,34 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private authUrl: string = "";
+  private authUrl = environment.authUrl;
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: {email: string, password: string}) : Observable<any> {
-    // TODO: Implement safer alternative to using localStorage
-    return this.http.post<{ token: string }>(`${this.authUrl}/login`, credentials).pipe(
-      tap(response => localStorage.setItem('jwt-token', response.token))
-    );
+  login(credentials: {username: string, password: string}) : Observable<any> {
+    return this.http.post(`${this.authUrl}/login`, credentials, {
+      withCredentials: true
+    });
   }
 
-  logout() : void {
-    // TODO: Implement safer alternative to using localStorage
-    localStorage.removeItem('jwt-token');
+  logout() : Observable<any> {
+    return this.http.post(`${this.authUrl}/logout`, {
+      withCredentials: true
+    });
   }
 
-  getToken() : string | null {
-    // TODO: Implement safer alternative to using localStorage
-    return localStorage.getItem('jwt-token');
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.getToken();
+  isAuthenticated(): Observable<any> {
+    return this.http.get<boolean>(`${this.authUrl}/is-authenticated`, {
+      withCredentials: true
+    });
   }
 
 }

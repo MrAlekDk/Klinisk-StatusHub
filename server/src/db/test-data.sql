@@ -7,13 +7,13 @@ WHERE NOT EXISTS (
 
 -- Create test users 
 INSERT INTO users (name, email, password, last_login, organisation_id)
-SELECT 'Alexander Hansen', 'alexander@example.com', 'hashed_password_here', NULL, 1
+SELECT 'Alexander Hansen', 'alexander@example.com', '{{ALEX_PASSWORD}}', NULL, 1
 WHERE NOT EXISTS (
     SELECT 1 FROM users WHERE email = 'alexander@example.com'
 );
 
 INSERT INTO users (name, email, password, last_login, organisation_id)
-SELECT 'Maria Jensen', 'maria@example.com', 'hashed_password_here', NULL, 1
+SELECT 'Maria Jensen', 'maria@example.com', '{{MARIA_PASSWORD}}', NULL, 1
 WHERE NOT EXISTS (
     SELECT 1 FROM users WHERE email = 'maria@example.com'
 );
