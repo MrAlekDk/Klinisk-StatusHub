@@ -14,7 +14,7 @@ const __dirname: string = path.dirname(__filename);
 
 app.use(express.json());
 app.use('/api', apiRouter);
-app.use(authRouter);
+app.use('/auth', authRouter);
 
 //serves static files from client/dist/client/browser
 const publicPath: string = path.join(__dirname, '../../client/dist/client/browser');

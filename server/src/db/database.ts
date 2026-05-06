@@ -2,6 +2,7 @@ import Database, { Options } from 'better-sqlite3-multiple-ciphers';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { hashPassword } from '../services/hashingService.js';
 
 // __dirname replacement for ESM
 const __filename: string = fileURLToPath(import.meta.url);
@@ -31,8 +32,21 @@ if (process.env["NODE_ENV"] === "development")
 {
   const testDataPath: string = path.join(__dirname, 'test-data.sql');
 
-  const data: string = fs.readFileSync(testDataPath, 'utf-8');
-  db.exec(data);
+  let testData: string = fs.readFileSync(testDataPath, 'utf-8');
+
+  const alexPassword = process.env["ALEX_PASSWORD"];
+  const mariaPassword = process.env["MARIA_PASSWORD"];
+  if(alexPassword){
+    const alexHash = await hashPassword(alexPassword);
+    testData = testData.replace("{{ALEX_PASSWORD}}", alexHash);
+  }
+
+  if(mariaPassword){
+    const mariaHash = await hashPassword(mariaPassword);
+    testData = testData.replace("{{MARIA_PASSWORD}}", mariaHash);
+  }
+
+  db.exec(testData);
 }
 
 export default db;

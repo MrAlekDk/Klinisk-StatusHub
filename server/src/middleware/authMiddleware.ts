@@ -3,19 +3,20 @@ import {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Bearer <token>
+  // The token should be located in the "cookie" field of req, currently it gets set as a header
+  const cookieHeader = req.headers['cookie'];
+  const token = cookieHeader && cookieHeader.split('=')[1]; // the bearer token from the cookie
 
   if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
+    return res.status(401).json({ authenticated: false });
   }
 
   try {
     const secretKey = process.env['JWT_KEY'] as string;
     const decoded = jwt.verify(token, secretKey);
-    (req as any).user = decoded; // Attach user info to request
+    (req as any).user = decoded;
     next();
   } catch (err) {
-    return res.status(403).json({ message: 'Invalid token' });
+    return res.status(401).json({ authenticated: false });
   }
 }
