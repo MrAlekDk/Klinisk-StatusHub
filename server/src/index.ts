@@ -7,6 +7,7 @@ import authRouter from './routes/authRoutes.js';
 import { fileURLToPath } from 'node:url';
 import cron from 'node-cron';
 import runHealthCheck from './services/healthCheckService.js';
+import { endpointLogger } from './middleware/endpointLoggerMiddleware.js';
 
 // schedule cron task to run healthCheck
 cron.schedule('* * * * *', runHealthCheck);
@@ -19,6 +20,9 @@ const __filename: string = fileURLToPath(import.meta.url);
 const __dirname: string = path.dirname(__filename);
 
 app.use(express.json());
+
+app.use(endpointLogger);
+
 app.use('/api', apiRouter);
 app.use('/auth', authRouter);
 
