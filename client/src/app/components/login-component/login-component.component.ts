@@ -24,12 +24,12 @@ export class LoginComponentComponent implements OnInit {
     {
       if(res.authenticated)
       {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/dashboard']);
       }
       else{
         this.router.navigate(['/login']);
       }
-    })
+    });
   }
 
   async onSubmit(username:string, password:string) {
@@ -38,7 +38,7 @@ export class LoginComponentComponent implements OnInit {
       {
         this.router.navigate(['/home']);
       }
-    })
+    });
   }
 
 }

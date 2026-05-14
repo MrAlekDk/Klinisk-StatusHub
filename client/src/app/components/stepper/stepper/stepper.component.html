@@ -1,0 +1,22 @@
+<div>
+  <p>
+    {{getCurrentStep().description}}
+  </p>
+
+</div>
+
+<div class="stepper">
+  <div class="step"
+       *ngFor="let step of steps; let i = index"
+       [class.active]="i === currentStep"
+       [class.completed]="i < currentStep">
+    <div class="circle">{{ i + 1 }}</div>
+    <div class="label">{{ step.title }}</div>
+  </div>
+</div>
+
+
+<div class="controls">
+  <button (click)="prev()" [disabled]="currentStep === 0">Back</button>
+  <button (click)="next()" [disabled]="currentStep === steps.length - 1">Next</button>
+</div>
