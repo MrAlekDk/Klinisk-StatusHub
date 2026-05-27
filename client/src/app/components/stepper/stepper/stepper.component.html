@@ -1,8 +1,9 @@
 <div>
-  <p>
-    {{getCurrentStep().description}}
-  </p>
-
+  <ul class="list-disc">
+    @for (item of getCurrentStep().description.split(";"); track $index) {
+      <li>{{item}}</li>
+    }
+  </ul>
 </div>
 
 <div class="stepper">

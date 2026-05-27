@@ -140,6 +140,7 @@ dist
 *.sqlite
 server/db/database.sqlite
 server/db/*.sqlite
+server/src/db/test-data-private.sql
 
 # server tests
 server/test/

@@ -10,6 +10,7 @@
 </div>
 <app-modal *ngIf="isOpen && selectedSystem !== null" title="{{selectedSystem.name}}" (closed)="closeModal()">
   <app-stepper
+  class="flex flex-col h-full"
   [steps]="selectedSystem.contingencyPlan"
   [currentStep]="step">
   </app-stepper>

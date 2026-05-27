@@ -14,13 +14,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: #ffffff;
-  padding: 1.5rem;
+  padding: 3.5rem;
   border-radius: 10px;
-  width: 420px;
+  width: 80vw;
+  min-height: 50vh;
   max-width: 90%;
   z-index: 1001;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   animation: fadeInScale 0.2s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Header */

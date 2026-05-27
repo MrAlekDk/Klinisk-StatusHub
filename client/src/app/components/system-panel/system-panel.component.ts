@@ -24,6 +24,10 @@ export class SystemPanelComponent {
     }
 
   getMostRecentStatus(): string {
+    if(this.statuses.length === 0)
+    {
+      return "Status not available";
+    }
     this.statuses.sort((a, b) =>{
       if(a.checkedAt > b.checkedAt)
       {
