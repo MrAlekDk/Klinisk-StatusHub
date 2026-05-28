@@ -30,7 +30,7 @@ db.exec(schema);
 
 if (process.env["NODE_ENV"] === "development")
 {
-  const testDataPath: string = path.join(__dirname, 'test-data.sql');
+  const testDataPath: string = path.join(__dirname, 'test-data-private.sql');
 
   let testData: string = fs.readFileSync(testDataPath, 'utf-8');
 

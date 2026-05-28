@@ -1,5 +1,7 @@
+import { ContingencyPlanStep } from "./contingecy-plan-step";
+
 export interface ContingencyPlan {
   id: number;
-  content: string;         // markdown, HTML, or plain text
+  content: ContingencyPlanStep[];         // markdown, HTML, or plain text
   updatedAt: string;
 }

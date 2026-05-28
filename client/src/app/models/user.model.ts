@@ -6,4 +6,5 @@ export interface User {
   email: string;
   lastLogin?: string | null;
   organisation: Organisation;
+  organisationId: number;
 }

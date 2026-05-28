@@ -1,0 +1,12 @@
+<div class="backdrop" (click)="close()"></div>
+
+    <div class="modal">
+      <header class="modal-header">
+        <h1 class="text-xl">{{ title }}</h1>
+        <button class="close-btn" (click)="close()">×</button>
+      </header>
+
+      <section class="modal-body">
+        <ng-content></ng-content>
+      </section>
+    </div>

@@ -1,0 +1,17 @@
+<h1 class="text-3xl text-white p-5">System oversigt</h1>
+<div class="grid grid-cols-3 gap-5 self-center m-10">
+  @for (system of systems; track system.id)
+  {
+    <app-system-panel [systemName]="system.name" [contacts]="system.contacts" [contingencyPlan]="system.contingencyPlan" [statuses]="system.statuses" (openModal)="openModal(system)"/>
+  }
+  @empty{
+    <h2>Loading systems</h2>
+  }
+</div>
+<app-modal *ngIf="isOpen && selectedSystem !== null" title="{{selectedSystem.name}}" (closed)="closeModal()">
+  <app-stepper
+  class="flex flex-col h-full"
+  [steps]="selectedSystem.contingencyPlan"
+  [currentStep]="step">
+  </app-stepper>
+</app-modal>

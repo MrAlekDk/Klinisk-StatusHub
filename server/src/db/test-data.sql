@@ -58,19 +58,34 @@ WHERE NOT EXISTS (
 
 -- Create contingency plans
 INSERT INTO contingency_plans (system_id, content)
-SELECT 1, 'If the Dental Journal System is down, use paper journals temporarily.'
+SELECT 1, '[
+  { "step": 1, "title": "Identify issue", "description": "Verify that the system is actually down." },
+  { "step": 2, "title": "Notify staff", "description": "Inform the dental team about the outage." },
+  { "step": 3, "title": "Switch to backup", "description": "Use the paper journal fallback procedure." }
+]
+'
 WHERE NOT EXISTS (
     SELECT 1 FROM contingency_plans WHERE system_id = 1
 );
 
 INSERT INTO contingency_plans (system_id, content)
-SELECT 2, 'If booking is unavailable, call patients manually.'
+SELECT 2, '[
+  { "step": 1, "title": "Identify issue", "description": "Verify that the system is actually down." },
+  { "step": 2, "title": "Notify staff", "description": "Inform the dental team about the outage." },
+  { "step": 3, "title": "Switch to backup", "description": "Use the paper journal fallback procedure." }
+]
+'
 WHERE NOT EXISTS (
     SELECT 1 FROM contingency_plans WHERE system_id = 2
 );
 
 INSERT INTO contingency_plans (system_id, content)
-SELECT 3, 'If X-Ray server is down, redirect patients to backup clinic.'
+SELECT 3, '[
+  { "step": 1, "title": "Identify issue", "description": "Verify that the system is actually down." },
+  { "step": 2, "title": "Notify staff", "description": "Inform the dental team about the outage." },
+  { "step": 3, "title": "Switch to backup", "description": "Use the paper journal fallback procedure." }
+]
+'
 WHERE NOT EXISTS (
     SELECT 1 FROM contingency_plans WHERE system_id = 3
 );
