@@ -22,10 +22,10 @@ export function endpointLogger(req: Request, res: Response, next: NextFunction) 
       status: res.statusCode,
       duration_ms: duration,
       ip: req.ip,
-      userId: req.user?.id || null,
-      organisationId: req.user?.organisationId || null,
+      userId: req.user?.id ?? null,
+      organisationId: req.user?.organizationId ?? null,
       query: req.query,
-      username: req.body.username || null
+      username: req.body?.username ?? null
     };
 
     fs.appendFileSync(logFile, JSON.stringify(logEntry) + "\n");

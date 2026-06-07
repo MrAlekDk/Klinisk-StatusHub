@@ -1,5 +1,21 @@
 <div class="flex flex-col bg-white p-2 justify-center rounded-md border-black border-3 shadow-xl">
-  <h1 class="m-3 text-xl">{{systemName}}</h1>
-  <h2 class="m-3">Status: {{getMostRecentStatus()}}</h2>
-  <button (click)="requestOpenModal()">Se beredskabsplan</button>
+  <h1 class="m-3 text-xl">{{ systemName }}</h1>
+
+  <div class="flex flex-row justify-between m-3">
+    <div class="flex flex-row">
+      <div class="w-4 h-4 rounded-full mr-2 animate-pulse {{ getStatusColor() }}"></div>
+      <h2>{{ getMostRecentStatus() }}</h2>
+    </div>
+    <div class="ml-4 text-sm text-gray-500 self-end">
+      {{ getLatestUpdateTime() }}
+    </div>
+  </div>
+
+  <button
+    class="transition-colors bg-blue-900 text-white rounded-md border-solid border-2 border-black hover:bg-green-700 cursor-pointer"
+    (click)="requestOpenModal()"
+  >
+    Se beredskabsplan
+  </button>
 </div>
+
